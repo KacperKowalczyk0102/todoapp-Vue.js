@@ -5,24 +5,48 @@ import { ref, onMounted, computed, watch } from 'vue'
 const todos = ref([])
 const name = ref('')
 
+
+const selectedPerson = ref(null)
+
+const numberOfDays = ref(0);
+
 //dane wejściowe(Nasz kontent)
-const input_content = ref('') 
+const input_content = ref('')
+
+const getEndDate = (todo) => {
+    const currentDate = new Date(todo.createdAt);
+    const endDate = new Date(currentDate.setDate(currentDate.getDate() + todo.numberOfDays));
+    const day = endDate.getDate();
+    const month = endDate.toLocaleString('default', { month: 'long' });
+    const year = endDate.getFullYear();
+    return `${day} ${month} ${year}`;
+};
+
 
 //tworzymy funkcje dodawania zadań
 const addTodo = () => {
     if(input_content.value.trim() === '' || input_category.value === null){
         return
     }
+    if (numberOfDays.value === 0) {
+        return;
+    }
+    const currentDate = new Date();
+    const futureDate = new Date(currentDate.setDate(currentDate.getDate() + numberOfDays.value)); 
     
     todos.value.push({
         content: input_content.value,
         category: input_category.value,
+        person: selectedPerson.value, // Dodanie wybranej osoby do zadania
+        numberOfDays: numberOfDays.value,
         done: false,
         createdAt: new Date().getTime()
     })
 
     input_content.value = ''
     input_category.value = null
+    selectedPerson.value = null // Zresetowanie wybranej osoby po dodaniu zadania
+    numberOfDays.value = 0; 
 }
 //kategorie do jakich zostaną przypisane nasze zadania, 
 //domyślnie ustawione na null
@@ -54,6 +78,8 @@ onMounted(() =>{
     name.value = localStorage.getItem('name') || ''
     todos.value = JSON.parse(localStorage.getItem('todos')) || []
 })
+
+
 </script>
 
 <template>
@@ -76,6 +102,23 @@ onMounted(() =>{
                 <input type="text"
                 placeholder="np. zrobić pranie" 
                 v-model="input_content"/>
+                
+                <div class="personToDo">
+                    <label for="people">Wybierz osobę do wykonania zadania</label>
+                    <select v-model="selectedPerson" name="people" id="people">
+                      <option value="kinga">Kinga</option>
+                      <option value="kacper">Kacper</option>
+                      <option value="mateusz">Mateusz</option>
+                      <option value="krzysiek">Krzysiek</option>
+                    </select>
+                </div>
+                <div class="daysToDo">
+                 <label for="daysToDo">Ilość dni na wykonanie:</label>
+                 <input type="number" id="myNumber" min="0" max="7" step="1" v-model="numberOfDays">
+
+                </div>      
+
+
                 <h4>Wybierz kategorię</h4>
 
                 <div class="options">
@@ -145,7 +188,10 @@ onMounted(() =>{
                     <div class="todo-content">
                         <input type="text" v-model="todo.content">
                     </div>
+                    <p class="personToDo" v-if="todo.person !== null">Wykonać ma: {{ todo.person }}</p>
+                    <p>Data zakończenia: {{ getEndDate(todo) }}</p>
 
+                    
                     <div class="actions">
 						<button class="delete" @click="removeTodo(todo)"></button>
 					</div>
