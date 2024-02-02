@@ -1,7 +1,7 @@
 
-$primary: #EA40A4;
+$primary: #bb01bb;
 $job: #3A82EE;
-$personal: $primary;
+$personal: #EA40A4;
 $shopping: #00f710;
 $plans: #fffb00;
 $light: #EEE;
@@ -9,6 +9,9 @@ $grey: #888;
 $dark: #313154;
 $danger: #ff5b57;
 $white: #fff;
+$box: #002b6b;
+$boxto: #48648f;
+$bckgrd: #3ae9e9;
 
 $shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 
@@ -35,7 +38,7 @@ input:not([type="radio"]):not([type="checkbox"]), button {
 }
 
 body {
-	background: $light;
+	background: $bckgrd;
 	color: $dark;
 }
 
@@ -55,7 +58,7 @@ h3 {
 
 h4 {
 	color: $grey;
-	font-size: 0.875rem;
+	font-size: 1.175rem;
 	font-weight: 700;
 	margin-bottom: 0.5rem;
 	margin-top: 20px
@@ -77,6 +80,7 @@ h4 {
 		color: $dark;
 		font-size: 1.5rem;
 		font-weight: 700;
+		
 	}
 }
 
@@ -87,11 +91,11 @@ h4 {
 		width: 100%;
 		font-size: 1.125rem;
 		padding: 1rem 1.5rem;
-		color: $dark;
-		background-color: $white;
+		color: $light;
 		border-radius: 0.5rem;
 		box-shadow: $shadow;
 		margin-bottom: 1.5rem;
+		background-color: $box;
 	}
 
 	.options {
@@ -107,7 +111,7 @@ h4 {
 		align-items: center;
 		justify-content: center;
 		padding: 1.5rem;
-		background-color: $white;
+		background-color: $box;
 		border-radius: 0.5rem;
 		box-shadow: $shadow;
 		cursor: pointer;
@@ -184,7 +188,7 @@ input[type="checkbox"] {
 	.options {
 		label {
 			div {
-				color: $dark;
+				color: $light;
 				font-size: 1.125rem;
 				margin-top: 1rem;
 			}
@@ -218,7 +222,7 @@ input[type="checkbox"] {
 	.todo-item {
 		display: flex;
 		align-items: center;
-		background-color: $white;
+		background-color: $boxto;
 		padding: 1rem;
 		border-radius: 0.5rem;
 		box-shadow: $shadow;
@@ -229,7 +233,8 @@ input[type="checkbox"] {
 
 .todo-item {
 	label {
-		display: block;
+		display: flex;
+		align-items: center;
 		margin-right: 1rem;
 		cursor: pointer;
 	}
@@ -238,10 +243,18 @@ input[type="checkbox"] {
 		flex: 1 1 0%;
 
 		input {
-			color: $dark;
+			color: $light;
 			font-size: 1.125rem;
 		}
 	}
+
+    .personToDo,
+    p {
+      display: flex;
+      align-items: center;
+      color: $light;
+
+    }
 
 	.actions {
 		display: flex;
@@ -280,3 +293,60 @@ input[type="checkbox"] {
 	text-decoration: line-through;
 	color: $grey;
 }
+
+.personToDo {
+	margin-top: 10px;
+	margin-right: 10px;
+  
+	label {
+		display: block;
+		margin-bottom: 5px;
+		font-weight: bold;
+	}
+  
+	select {
+		padding: 8px;
+		font-size: 16px;
+		border: 1px solid $light;
+		border-radius: 4px;
+		box-sizing: border-box;
+		background-color: $box;
+		color: $light;
+
+	  option {
+		font-size: 14px;
+		color: $light;
+		}
+	}
+}
+
+.daysToDo {
+	margin-bottom: 10px;
+	margin-right: 10px;
+  
+	label {
+		display: block;
+		margin-bottom: 5px;
+		font-weight: bold;
+	}
+  
+	input[type="number"] {
+		padding: 8px;
+		font-size: 12px;
+		border: 1px solid $light;
+		border-radius: 4px;
+		box-sizing: border-box;
+
+		color: $light;
+		background-color: $box;
+  
+		-webkit-appearance: textfield;
+
+		&::-webkit-inner-spin-button,
+		&::-webkit-outer-spin-button {
+			//-webkit-appearance: none;
+			margin: 0;
+		}
+	
+	  }
+	}
