@@ -1,0 +1,282 @@
+
+$primary: #EA40A4;
+$job: #3A82EE;
+$personal: $primary;
+$shopping: #00f710;
+$plans: #fffb00;
+$light: #EEE;
+$grey: #888;
+$dark: #313154;
+$danger: #ff5b57;
+$white: #fff;
+
+$shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+$job-glow: 0px 0px 4px rgba(58, 130, 238, 0.75);
+$personal-glow: 0px 0px 4px rgba(234, 64, 164, 0.75);
+$shopping-glow: 0px 0px 4px rgba(0, 186, 25, 0.75);
+$plans-glow: 0px 0px 4px rgb(196, 203, 0);
+
+
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'montserrat', sans-serif;
+}
+
+input:not([type="radio"]):not([type="checkbox"]), button {
+	appearance: none;
+	border: none;
+	outline: none;
+	background: none;
+	cursor: initial;
+}
+
+body {
+	background: $light;
+	color: $dark;
+}
+
+section {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	padding-left: 1.5rem;
+	padding-right: 1.5em;
+}
+
+h3 {
+	color: $dark;
+	font-size: 1rem;
+	font-weight: 400;
+	margin-bottom: 0.5rem;
+}
+
+h4 {
+	color: $grey;
+	font-size: 0.875rem;
+	font-weight: 700;
+	margin-bottom: 0.5rem;
+	margin-top: 20px
+}
+
+.greeting {
+	.title {
+		display: flex;
+
+		input {
+			margin-left: 0.5rem;
+			flex: 1 1 0%;
+			min-width: 0;
+		}
+	}
+
+	.title,
+	.title input {
+		color: $dark;
+		font-size: 1.5rem;
+		font-weight: 700;
+	}
+}
+
+
+.create-todo {
+	input[type="text"] {
+		display: block;
+		width: 100%;
+		font-size: 1.125rem;
+		padding: 1rem 1.5rem;
+		color: $dark;
+		background-color: $white;
+		border-radius: 0.5rem;
+		box-shadow: $shadow;
+		margin-bottom: 1.5rem;
+	}
+
+	.options {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 1rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.options label {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 1.5rem;
+		background-color: $white;
+		border-radius: 0.5rem;
+		box-shadow: $shadow;
+		cursor: pointer;
+	}
+}
+
+
+input[type="radio"],
+input[type="checkbox"] {
+	display: none;
+}
+
+.bubble {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	border: 2px solid $job;
+	box-shadow: $job-glow;
+
+	&.personal {
+		border-color: $personal;
+		box-shadow: $personal-glow;
+	}
+
+	&.shopping {
+		border-color: $shopping;
+		box-shadow: $shopping-glow;
+	}
+
+	&.plans {
+		border-color: $plans;
+		box-shadow: $plans-glow;
+	}
+
+	&::after {
+		content: "";
+		display: block;
+		opacity: 0;
+		width: 0px;
+		height: 0px;
+		background-color: $job;
+		box-shadow: $job-glow;
+		border-radius: 50%;
+		transition: 0.2s ease-in-out;
+	}
+
+	&.personal::after {
+		background-color: $personal;
+		box-shadow: $personal-glow;
+	}
+
+	&.shopping::after {
+		background-color: $shopping;
+		box-shadow: $shopping-glow;
+	}
+
+	&.plans::after {
+		background-color: $plans;
+		box-shadow: $plans-glow;
+	}
+
+	input:checked ~ &::after {
+		width: 10px;
+		height: 10px;
+		opacity: 1;
+	}
+}
+
+
+.create-todo {
+	.options {
+		label {
+			div {
+				color: $dark;
+				font-size: 1.125rem;
+				margin-top: 1rem;
+			}
+		}
+	}
+
+	input[type="submit"] {
+		display: block;
+		width: 100%;
+		font-size: 1.125rem;
+		padding: 1rem 1.5rem;
+		color: $white;
+		background-color: $primary;
+		border-radius: 0.5rem;
+		box-shadow: $personal-glow;
+		cursor: pointer;
+		transition: 0.2s ease-in-out;
+
+		&:hover {
+			opacity: 0.75;
+		}
+	}
+}
+
+
+.todo-list {
+	.list {
+		margin: 1rem 0;
+	}
+
+	.todo-item {
+		display: flex;
+		align-items: center;
+		background-color: $white;
+		padding: 1rem;
+		border-radius: 0.5rem;
+		box-shadow: $shadow;
+		margin-bottom: 1rem;
+	}
+}
+
+
+.todo-item {
+	label {
+		display: block;
+		margin-right: 1rem;
+		cursor: pointer;
+	}
+
+	.todo-content {
+		flex: 1 1 0%;
+
+		input {
+			color: $dark;
+			font-size: 1.125rem;
+		}
+	}
+
+	.actions {
+		display: flex;
+		align-items: center;
+
+		button {
+			width: 2rem;
+			height: 2rem;
+			border-radius: 50%;
+			background-color: transparent;
+			color: $danger;
+			cursor: pointer;
+			transition: 0.2s ease-in-out;
+			border: 2px solid $danger;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 1.2rem;
+			line-height: 1;
+			padding: 0;
+			box-sizing: border-box;
+
+			&:hover {
+				background-color: $danger;
+				color: $white;
+			}
+		}
+
+		.delete::before {
+			content: 'x';
+		}
+	}
+}
+
+.todo-item.done .todo-content input {
+	text-decoration: line-through;
+	color: $grey;
+}
