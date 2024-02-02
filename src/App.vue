@@ -14,6 +14,7 @@ const numberOfDays = ref(0);
 const input_content = ref('')
 
 const getEndDate = (todo) => {
+   
     const currentDate = new Date(todo.createdAt);
     const endDate = new Date(currentDate.setDate(currentDate.getDate() + todo.numberOfDays));
     const day = endDate.getDate();
@@ -28,9 +29,7 @@ const addTodo = () => {
     if(input_content.value.trim() === '' || input_category.value === null){
         return
     }
-    if (numberOfDays.value === 0) {
-        return;
-    }
+    
     const currentDate = new Date();
     const futureDate = new Date(currentDate.setDate(currentDate.getDate() + numberOfDays.value)); 
     
@@ -106,10 +105,10 @@ onMounted(() =>{
                 <div class="personToDo">
                     <label for="people">Wybierz osobę do wykonania zadania</label>
                     <select v-model="selectedPerson" name="people" id="people">
-                      <option value="kinga">Kinga</option>
-                      <option value="kacper">Kacper</option>
-                      <option value="mateusz">Mateusz</option>
-                      <option value="krzysiek">Krzysiek</option>
+                      <option value="Kinga">Kinga</option>
+                      <option value="Kacper">Kacper</option>
+                      <option value="Mateusz">Mateusz</option>
+                      <option value="Krzysiek">Krzysiek</option>
                     </select>
                 </div>
                 <div class="daysToDo">
@@ -188,8 +187,15 @@ onMounted(() =>{
                     <div class="todo-content">
                         <input type="text" v-model="todo.content">
                     </div>
-                    <p class="personToDo" v-if="todo.person !== null">Wykonać ma: {{ todo.person }}</p>
-                    <p>Data zakończenia: {{ getEndDate(todo) }}</p>
+                    <div>
+                        <p class="personToDo" v-if="todo.person !== null">
+                            Wykonać ma: {{ todo.person }}&nbsp;
+                        </p>
+                        <p class="daysToDo" v-if="todo.numberOfDays !== 0">
+                            Data zakończenia: {{ getEndDate(todo) }}
+                        </p>
+                    </div>
+                    
 
                     
                     <div class="actions">
