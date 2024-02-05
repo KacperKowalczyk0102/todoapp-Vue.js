@@ -1,19 +1,21 @@
 <template>
-    <div class="login-form">
-      <h1>Logowanie</h1>
-      <form @submit.prevent="login">
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" v-model="email" required>
-        </div>
-        <div class="form-group">
-          <label for="password">Hasło:</label>
-          <input type="password" id="password" v-model="password" required>
-        </div>
-        <div class="form-group">
-          <button type="submit">Zaloguj się</button>
-        </div>
-      </form>
+    <div class="login-container">
+      <div class="login-form">
+        <h1>Logowanie</h1>
+        <form @submit.prevent="login">
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" v-model="email" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Hasło:</label>
+            <input type="password" id="password" v-model="password" required>
+          </div>
+          <div class="form-group">
+            <button type="submit">Zaloguj się</button>
+          </div>
+        </form>
+      </div>
     </div>
   </template>
   
@@ -28,16 +30,10 @@
     },
     methods: {
       login() {
-        // Ttutak jest logika logowania
-        // Na przykład weryfikacja poprawności danych logowania
-        // Jeśli dane są poprawne, użytkownik jest przekierowany do konketru
         if (this.email === 'pp5@uek.krakow.pl' && this.password === 'pp5') {
-          // Przekierowanie do innego komponentu po zalogowaniu
           this.$router.push('/apka');
         } else {
-          // Obsługa nieprawidłowych danych logowania
           alert('Nieprawidłowy email lub hasło. Spróbuj ponownie.');
-          // Wyczyszczenie pól formularza
           this.email = '';
           this.password = '';
         }
@@ -47,9 +43,16 @@
   </script>
   
   <style scoped>
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Wysokość na całą wysokość ekranu */
+  }
+  
   .login-form {
-    max-width: 400px;
-    margin: 0 auto;
+    width: 500px; /* Szerokość formularza */
+    max-width: 400px; /* Maksymalna szerokość formularza */
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;

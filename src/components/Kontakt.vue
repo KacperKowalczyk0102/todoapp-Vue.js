@@ -82,7 +82,7 @@
 
   /* Styl dla przycisku */
   button[type="submit"] {
-    background-color: #4caf50;
+    background-color: #007bff;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -92,7 +92,7 @@
   }
 
   button[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #007bff;
   }
 
   /* Styl dla komunikatu "Dziękujemy za informacje!" */
@@ -103,5 +103,8 @@
     border: 1px solid #d6e9c6;
     color: #3c763d;
     border-radius: 3px;
+  }
+  h1 {
+    text-align: center;
   }
 </style>
